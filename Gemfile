@@ -49,8 +49,12 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'factory_bot_rails', '~> 6.2'
+  gem 'ffaker', '~> 2.21'
+  gem 'shoulda-matchers', '~> 5.3'
+  gem 'rspec-rails', '~> 6.0', '>= 6.0.2'
 end
 
 group :development do
