@@ -10,9 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_20_113505) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_20_152953) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "appointment_status", ["planned", "completed"]
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,6 +30,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_113505) do
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["phone_number"], name: "index_admin_users_on_phone_number", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "appointments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "doctor_id", null: false
+    t.enum "status", default: "planned", null: false, enum_type: "appointment_status"
+    t.text "prescription"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -69,5 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_113505) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "appointments", "doctors"
+  add_foreign_key "appointments", "users"
   add_foreign_key "doctors", "categories"
 end
