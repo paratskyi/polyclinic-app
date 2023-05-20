@@ -13,7 +13,10 @@
 class Doctor < ApplicationRecord
   belongs_to :category
 
-  has_one :profile, as: :user, dependent: :destroy, required: true
+  has_many :appointments, dependent: :nullify
+  has_many :users, through: :appointments
+
+  has_one :profile, as: :user, dependent: :destroy
   accepts_nested_attributes_for :profile, allow_destroy: false
 
   validates :first_name, presence: true, length: { minimum: 2 }
