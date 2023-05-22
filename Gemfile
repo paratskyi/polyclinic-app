@@ -51,6 +51,7 @@ gem "sassc-rails"
 gem 'activeadmin', '~> 2.13', '>= 2.13.1'
 gem 'cancancan', '~> 3.5'
 gem 'devise', '~> 4.9', '>= 4.9.2'
+gem 'draper', '~> 4.0', '>= 4.0.2'
 
 group :development, :test do
   gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
