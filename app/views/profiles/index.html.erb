@@ -3,7 +3,7 @@
     <caption>Available doctors</caption>
     <thead>
       <tr>
-        <% Doctor::PUBLIC_ATTRIBUTES.each do |attribute_name| %>
+        <% Profile::PUBLIC_ATTRIBUTES_MAPPER[@scope].each do |attribute_name| %>
           <th scope="col"><%= attribute_name.humanize %></th>
         <% end %>
         <% Profile::PUBLIC_ATTRIBUTES.each do |attribute_name| %>

@@ -32,9 +32,16 @@
               <li class="nav-item">
                 <%= link_to "Profile", profile_path(current_profile), method: :get, class: 'nav-link' %>
               </li>
-              <li class="nav-item">
-                <%= link_to "Doctors", profiles_path, method: :get, class: 'nav-link' %>
-              </li>
+              <% if current_profile.user? %>
+                <li class="nav-item">
+                  <%= link_to "Doctors", profiles_path(scope: 'doctor'), method: :get, class: 'nav-link' %>
+                </li>
+              <% end %>
+              <% if current_profile.doctor? %>
+                <li class="nav-item">
+                  <%= link_to "Users", profiles_path(scope: 'user'), method: :get, class: 'nav-link' %>
+                </li>
+              <% end %>
             </ul>
             <span class="navbar-text me-2">
               <%= current_profile.email %>

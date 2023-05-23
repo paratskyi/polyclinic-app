@@ -13,13 +13,13 @@
     <% @profile.user.class.const_get(:PUBLIC_ATTRIBUTES).each do |attribute_name| %>
       <tr>
         <th scope="row"><%= attribute_name.humanize %></th>
-        <td><%= @profile.user.public_send(attribute_name) %></td>
+        <td><%= @profile.user.decorate.public_send(attribute_name) %></td>
       </tr>
     <% end %>
     <% @profile.class.const_get(:PUBLIC_ATTRIBUTES).each do |attribute_name| %>
       <tr>
         <th scope="row"><%= attribute_name.humanize %></th>
-        <td><%= @profile.public_send(attribute_name) %></td>
+        <td><%= @profile.decorate.public_send(attribute_name) %></td>
       </tr>
     <% end %>
     </tbody>

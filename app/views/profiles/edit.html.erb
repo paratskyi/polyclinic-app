@@ -14,16 +14,13 @@
       <%= f.label :phone_number %>
     </div>
 
-    <%= f.fields_for(:user_attributes, include_id: false) do |user_attributes_f| %>
-      <div class="form-floating">
-        <%= user_attributes_f.text_field :first_name, class: 'form-control', value: @profile.user.nil? ? '' : @profile.user.first_name, autofocus: true, autocomplete: "given-name", placeholder: 'First name' %>
-        <%= user_attributes_f.label :first_name %>
-      </div>
-
-      <div class="form-floating">
-        <%= user_attributes_f.text_field :last_name, class: 'form-control', value: @profile.user.nil? ? '' : @profile.user.last_name, autofocus: true, autocomplete: "family-name", placeholder: 'Family name'%>
-        <%= user_attributes_f.label :last_name %>
-      </div>
+    <%= f.fields_for(:user_attributes, @profile.user.decorate, include_id: false) do |user_attributes_f| %>
+      <% Profile::PUBLIC_ATTRIBUTES_MAPPER[current_profile.user_type.downcase].excluding('category').each do |attribute_name| %>
+        <div class="form-floating">
+          <%= user_attributes_f.text_field attribute_name.to_sym, class: 'form-control', autofocus: true, placeholder: attribute_name.humanize %>
+          <%= user_attributes_f.label attribute_name.to_sym %>
+        </div>
+      <% end %>
     <% end %>
 
     <%= f.submit "Update", class: 'w-100 btn btn-lg btn-primary' %>

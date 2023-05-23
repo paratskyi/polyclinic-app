@@ -18,6 +18,11 @@ class Profile < ApplicationRecord
   USER_TYPES = %i[user doctor].freeze
   PUBLIC_ATTRIBUTES = %w[email phone_number].freeze
 
+  PUBLIC_ATTRIBUTES_MAPPER = {
+    'user' => User::PUBLIC_ATTRIBUTES,
+    'doctor' => Doctor::PUBLIC_ATTRIBUTES
+  }.freeze
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
   belongs_to :user, polymorphic: true, dependent: :destroy, optional: false, autosave: true
@@ -29,6 +34,7 @@ class Profile < ApplicationRecord
                            length: { minimum: 10, maximum: 15 }
 
   scope :doctors, -> { where(user_type: 'Doctor') }
+  scope :users, -> { where(user_type: 'User') }
 
   def user?
     user_type == 'User'

@@ -1,7 +1,14 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[show edit update]
+  before_action :set_scope, only: %i[index]
+
+  PROFILE_MAPPER = {
+    'doctor' => Profile.doctors.preload(:user),
+    'user' => Profile.users.preload(:user)
+  }.freeze
+
   def index
-    @profiles = Profile.doctors
+    @profiles = PROFILE_MAPPER[@scope]
   end
 
   def show
@@ -25,7 +32,14 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(params[:id])
   end
 
+  def set_scope
+    @scope = params[:scope]
+  end
+
   def profile_params
-    params.require(:profile).permit(:user_type, :email, :phone_number, user_attributes: %i[first_name last_name])
+    params.require(:profile).permit(
+      :user_type, :email, :phone_number,
+      user_attributes: Profile::PUBLIC_ATTRIBUTES_MAPPER[current_profile.user_type.downcase].map(&:to_sym)
+    )
   end
 end
