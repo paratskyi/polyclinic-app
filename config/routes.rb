@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  resources :profiles, only: [:show, :edit, :update]
+  resources :profiles, only: [:index, :show, :edit, :update]
 end

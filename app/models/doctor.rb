@@ -11,6 +11,8 @@
 #  updated_at  :datetime         not null
 #
 class Doctor < ApplicationRecord
+  PUBLIC_ATTRIBUTES = %w[first_name last_name education category].freeze
+
   belongs_to :category
 
   has_many :appointments, dependent: :nullify

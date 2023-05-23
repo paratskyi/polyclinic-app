@@ -1,5 +1,9 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[show edit update]
+  def index
+    @profiles = Profile.doctors
+  end
+
   def show; end
 
   def edit; end

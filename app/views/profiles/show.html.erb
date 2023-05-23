@@ -2,7 +2,13 @@
   <h2>Welcome <%= @profile.decorate.full_name %></h2>
 
   <table class="table table-sm caption-top table-info table-striped">
-    <caption><%= @profile.user_type %> details | <%= link_to "Edit", edit_profile_path(@profile), method: :get %></caption>
+    <caption>
+      <%= @profile.user_type %> details
+      <% if @profile == current_profile %>
+        |
+        <%= link_to "Edit", edit_profile_path(@profile), method: :get %>
+      <% end %>
+    </caption>
     <tbody>
     <% @profile.user.class.const_get(:PUBLIC_ATTRIBUTES).each do |attribute_name| %>
       <tr>
