@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
       flash[:success] = 'Profile was successfully updated!'
       redirect_to @profile
     else
-      render 'edit'
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -20,7 +20,6 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    # params.require(:profile).permit(:name, :email)
-    params.require(:profile).permit(:first_name, :last_name, profile_attributes: %i[email phone_number])
+    params.require(:profile).permit(:user_type, :email, :phone_number, user_attributes: %i[first_name last_name])
   end
 end
