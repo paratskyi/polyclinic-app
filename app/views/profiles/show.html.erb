@@ -24,4 +24,8 @@
     <% end %>
     </tbody>
   </table>
+
+  <% if current_profile.user? && @profile.doctor? %>
+    <%= button_to "Create appointment", new_appointment_path, method: :get, class: 'btn btn-outline-success' %>
+  <% end %>
 </main>

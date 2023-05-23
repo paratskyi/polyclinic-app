@@ -1,0 +1,25 @@
+<main class="appointment-section">
+  <table class="table table-sm caption-top table-info table-striped">
+    <caption>Appointment details</caption>
+    <tbody>
+      <tr>
+        <th scope="row">Doctor</th>
+        <td>
+          <%= link_to @appointment.doctor.profile.decorate.full_name, profile_path(@appointment.doctor.profile), method: :get %>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">User</th>
+        <td><%= @appointment.user.profile.decorate.full_name %></td>
+      </tr>
+      <tr>
+        <th scope="row">Status</th>
+        <td><%= @appointment.status %></td>
+      </tr>
+      <tr>
+        <th scope="row">Prescription</th>
+        <td><%= @appointment.prescription %></td>
+      </tr>
+    </tbody>
+  </table>
+</main>

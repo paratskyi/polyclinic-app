@@ -1,0 +1,9 @@
+<main class="form-signup">
+  <%= render "devise/shared/error_messages", resource: @appointment %>
+
+  <%= form_for(@appointment, as: :appointment, url: appointments_path, method: :post) do |f| %>
+    <%= f.hidden_field :user_id, value: current_profile.user.id %>
+    <%= f.hidden_field :doctor_id, value: session[:doctor_id] %>
+    <%= f.submit "Create appointment", class: 'btn btn-outline-success' %>
+  <% end %>
+</main>

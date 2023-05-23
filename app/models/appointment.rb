@@ -15,4 +15,14 @@ class Appointment < ApplicationRecord
   belongs_to :doctor
 
   enum :status, { planned: 'planned', completed: 'completed' }
+
+  validate :appointment_count_within_limit, on: :create
+
+  private
+
+  def appointment_count_within_limit
+    return if doctor.appointments.planned.count < Doctor::APPOINTMENT_LIMIT
+
+    errors.add(:base, 'This doctor is too busy')
+  end
 end

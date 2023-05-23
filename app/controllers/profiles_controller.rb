@@ -4,7 +4,9 @@ class ProfilesController < ApplicationController
     @profiles = Profile.doctors
   end
 
-  def show; end
+  def show
+    session[:doctor_id] = @profile.user.id
+  end
 
   def edit; end
 

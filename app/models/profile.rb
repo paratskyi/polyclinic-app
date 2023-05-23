@@ -30,6 +30,14 @@ class Profile < ApplicationRecord
 
   scope :doctors, -> { where(user_type: 'Doctor') }
 
+  def user?
+    user_type == 'User'
+  end
+
+  def doctor?
+    user_type == 'Doctor'
+  end
+
   def user_attributes=(attributes)
     return unless USER_TYPES.include?(user_type.underscore.to_sym)
 
