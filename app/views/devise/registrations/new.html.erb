@@ -4,6 +4,8 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
 
+    <%= f.hidden_field :user_type, value: 'User' %>
+
     <div class="form-floating">
       <%= f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email", placeholder: "example@mail.com"%>
       <%= f.label :email %>
@@ -14,15 +16,17 @@
       <%= f.label :phone_number %>
     </div>
 
-    <div class="form-floating">
-      <%= f.text_field :first_name, class: 'form-control', value: resource.user.nil? ? '' : resource.user.first_name, autofocus: true, autocomplete: "given-name", placeholder: 'First name' %>
-      <%= f.label :first_name %>
-    </div>
+    <%= f.fields_for(:user_attributes, include_id: false) do |user_attributes_f| %>
+      <div class="form-floating">
+        <%= user_attributes_f.text_field :first_name, class: 'form-control', value: resource.user.nil? ? '' : resource.user.first_name, autofocus: true, autocomplete: "given-name", placeholder: 'First name' %>
+        <%= user_attributes_f.label :first_name %>
+      </div>
 
-    <div class="form-floating">
-      <%= f.text_field :last_name, class: 'form-control', value: resource.user.nil? ? '' : resource.user.last_name, autofocus: true, autocomplete: "family-name", placeholder: 'Family name'%>
-      <%= f.label :last_name %>
-    </div>
+      <div class="form-floating">
+        <%= user_attributes_f.text_field :last_name, class: 'form-control', value: resource.user.nil? ? '' : resource.user.last_name, autofocus: true, autocomplete: "family-name", placeholder: 'Family name'%>
+        <%= user_attributes_f.label :last_name %>
+      </div>
+    <% end %>
 
     <div class="form-floating">
       <%= f.password_field :password, class: 'form-control', autocomplete: "new-password", placeholder: "New password" %>
