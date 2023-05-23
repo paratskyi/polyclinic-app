@@ -1,0 +1,32 @@
+<main class="form-edit">
+  <%= render "devise/shared/error_messages", resource: @profile %>
+
+  <%= form_for(@profile, as: :profile, url: profile_path(@profile), method: :patch) do |f| %>
+    <h1 class="h3 mb-3 fw-normal">Edit</h1>
+
+    <div class="form-floating">
+      <%= f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email", placeholder: "example@mail.com"%>
+      <%= f.label :email %>
+    </div>
+
+    <div class="form-floating">
+      <%= f.phone_field :phone_number, class: 'form-control', autofocus: true, autocomplete: "phone", placeholder: "0999999999" %>
+      <%= f.label :phone_number %>
+    </div>
+
+    <%= f.fields_for(:user_attributes, include_id: false) do |user_attributes_f| %>
+      <div class="form-floating">
+        <%= user_attributes_f.text_field :first_name, class: 'form-control', value: @profile.user.nil? ? '' : @profile.user.first_name, autofocus: true, autocomplete: "given-name", placeholder: 'First name' %>
+        <%= user_attributes_f.label :first_name %>
+      </div>
+
+      <div class="form-floating">
+        <%= user_attributes_f.text_field :last_name, class: 'form-control', value: @profile.user.nil? ? '' : @profile.user.last_name, autofocus: true, autocomplete: "family-name", placeholder: 'Family name'%>
+        <%= user_attributes_f.label :last_name %>
+      </div>
+    <% end %>
+
+    <%= f.submit "Update", class: 'w-100 btn btn-lg btn-primary' %>
+  <% end %>
+  <%= link_to "Cancel", profile_path(@profile), method: :get %>
+</main>

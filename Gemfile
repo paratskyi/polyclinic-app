@@ -49,8 +49,11 @@ gem "sassc-rails"
 # gem "image_processing", "~> 1.2"
 
 gem 'activeadmin', '~> 2.13', '>= 2.13.1'
+gem 'bootstrap', '~> 5.2', '>= 5.2.3'
 gem 'cancancan', '~> 3.5'
 gem 'devise', '~> 4.9', '>= 4.9.2'
+gem 'draper', '~> 4.0', '>= 4.0.2'
+gem 'jquery-rails', '~> 4.5', '>= 4.5.1'
 
 group :development, :test do
   gem 'database_cleaner', '~> 2.0', '>= 2.0.1'

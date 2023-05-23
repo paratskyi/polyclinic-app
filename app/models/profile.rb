@@ -15,12 +15,23 @@
 #  user_id                :bigint           not null
 #
 class Profile < ApplicationRecord
+  USER_TYPES = %i[user doctor].freeze
+  PUBLIC_ATTRIBUTES = %w[email phone_number].freeze
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
-  belongs_to :user, polymorphic: true
+  belongs_to :user, polymorphic: true, dependent: :destroy, optional: false, autosave: true
+  accepts_nested_attributes_for :user
 
   validates :phone_number, presence: true,
                            uniqueness: true,
                            numericality: true,
                            length: { minimum: 10, maximum: 15 }
+
+  def user_attributes=(attributes)
+    return unless USER_TYPES.include?(user_type.underscore.to_sym)
+
+    self.user ||= user_type.constantize.new
+    self.user.assign_attributes(attributes)
+  end
 end

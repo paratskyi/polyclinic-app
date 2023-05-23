@@ -17,7 +17,6 @@ class Doctor < ApplicationRecord
   has_many :users, through: :appointments
 
   has_one :profile, as: :user, dependent: :destroy
-  accepts_nested_attributes_for :profile, allow_destroy: false
 
   validates :first_name, presence: true, length: { minimum: 2 }
   validates :last_name, presence: true, length: { minimum: 2 }
