@@ -12,7 +12,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    session[:doctor_id] = @profile.user.id
+    session[:doctor_id] = @profile.user.id if @profile.doctor?
   end
 
   def edit; end

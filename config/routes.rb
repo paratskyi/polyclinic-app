@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :profiles, only: [:index, :show, :edit, :update]
-  resources :appointments, only: [:new, :show, :create]
+  resources :appointments, only: [:index, :show, :edit, :update, :new, :create]
 end

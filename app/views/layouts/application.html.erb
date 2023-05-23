@@ -42,6 +42,9 @@
                   <%= link_to "Users", profiles_path(scope: 'user'), method: :get, class: 'nav-link' %>
                 </li>
               <% end %>
+              <li class="nav-item">
+                <%= link_to "Appointments", appointments_path, method: :get, class: 'nav-link' %>
+              </li>
             </ul>
             <span class="navbar-text me-2">
               <%= current_profile.email %>

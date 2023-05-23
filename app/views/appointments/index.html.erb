@@ -1,0 +1,27 @@
+<main class="appointments-section">
+  <table class="table table-sm caption-top table-info table-striped">
+    <caption>Appointments</caption>
+    <thead>
+    <tr>
+      <th scope="col">Doctor</th>
+      <th scope="col">User</th>
+      <th scope="col">Status</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @appointments.each do |appointment| %>
+      <tr>
+        <td>
+          <%= link_to appointment.doctor.profile.decorate.full_name, profile_path(appointment.doctor.profile), method: :get %>
+        </td>
+        <td>
+          <%= link_to appointment.user.profile.decorate.full_name, profile_path(appointment.user.profile), method: :get %>
+        </td>
+        <td><%= appointment.status %></td>
+        <td><%= link_to 'Info', appointment_path(appointment), method: :get %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</main>

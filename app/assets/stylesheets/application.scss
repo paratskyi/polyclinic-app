@@ -1,6 +1,6 @@
 @import "bootstrap";
 
-main.form-signin, main.form-signup, main.form-edit {
+main.form-signin, main.form-signup, main.form-edit, main.form-process-appointment {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,9 +9,15 @@ main.form-signin, main.form-signup, main.form-edit {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
+
+  textarea#appointment_prescription {
+    width: 5;
+    height: 200px;
+    width: 500px;
+  }
 }
 
-main.profile-section, main.profiles-section, main.appointment-section {
+main.profile-section, main.profiles-section, main.appointment-section, main.appointments-section {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -27,8 +33,10 @@ table.table.table-sm.caption-top {
   width: 50%;
 }
 
-main.profiles-section table.table.table-sm.caption-top {
-  width: 90%;
+main.profiles-section, main.appointments-section {
+  table.table.table-sm.caption-top {
+    width: 90%;
+  }
 }
 
 p.notice.alert.alert-info.fixed-top {
