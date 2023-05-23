@@ -15,6 +15,8 @@
 #  user_id                :bigint           not null
 #
 class Profile < ApplicationRecord
+  PUBLIC_ATTRIBUTES = %w[email phone_number].freeze
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
   belongs_to :user, polymorphic: true

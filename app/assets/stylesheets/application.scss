@@ -1,6 +1,6 @@
 @import "bootstrap";
 
-body {
+main.form-signin, main.form-signup, main.form-edit {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,7 +11,26 @@ body {
   background-color: #f5f5f5;
 }
 
+main.profile-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 55px;
+  flex-direction: column;
+  height: calc(100vh - 55px);
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+table.table.table-sm.caption-top {
+  width: 50%;
+}
+
 p.notice.alert.alert-info.fixed-top {
   top: 55px;
-  background: red;
+}
+
+th[scope="row"] {
+  width: 50%;
 }

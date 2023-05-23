@@ -9,6 +9,8 @@
 #  updated_at :datetime         not null
 #
 class User < ApplicationRecord
+  PUBLIC_ATTRIBUTES = %w[first_name last_name].freeze
+
   has_one :profile, as: :user, dependent: :destroy
 
   has_many :appointments, dependent: :nullify
