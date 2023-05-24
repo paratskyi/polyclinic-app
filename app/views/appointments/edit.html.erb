@@ -1,0 +1,15 @@
+<main class="form-process-appointment">
+  <%= render "devise/shared/error_messages", resource: @appointment %>
+
+  <%= form_for(@appointment, as: :appointment, url: appointment_path(@appointment), method: :patch) do |f| %>
+    <h1 class="h3 mb-3 fw-normal">Process appointment</h1>
+
+    <div class="form-floating">
+      <%= f.text_area :prescription, class: 'form-control', autofocus: true, placeholder: "prescription"%>
+      <%= f.label :prescription %>
+    </div>
+
+    <%= f.submit "Process", class: 'w-100 btn btn-lg btn-primary' %>
+  <% end %>
+  <%= link_to "Cancel", appointment_path(@appointment), method: :get %>
+</main>

@@ -1,0 +1,29 @@
+<main class="profiles-section">
+  <table class="table table-sm caption-top table-info table-striped">
+    <caption>Available doctors</caption>
+    <thead>
+      <tr>
+        <% Profile::PUBLIC_ATTRIBUTES_MAPPER[@scope].each do |attribute_name| %>
+          <th scope="col"><%= attribute_name.humanize %></th>
+        <% end %>
+        <% Profile::PUBLIC_ATTRIBUTES.each do |attribute_name| %>
+          <th scope="col"><%= attribute_name.humanize %></th>
+        <% end %>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @profiles.each do |profile| %>
+        <tr>
+          <% profile.user.class.const_get(:PUBLIC_ATTRIBUTES).each do |attribute_name| %>
+            <td><%= profile.user.decorate.public_send(attribute_name) %></td>
+          <% end %>
+          <% profile.class.const_get(:PUBLIC_ATTRIBUTES).each do |attribute_name| %>
+            <td><%= profile.public_send(attribute_name) %></td>
+          <% end %>
+          <td><%= link_to 'Info', profile_path(profile), method: :get %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</main>

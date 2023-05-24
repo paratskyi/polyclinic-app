@@ -64,7 +64,7 @@ ActiveAdmin.register Profile, as: 'Doctor' do
 
   controller do
     def scoped_collection
-      end_of_association_chain.where(user_type: 'Doctor')
+      end_of_association_chain.doctors
     end
   end
 end
