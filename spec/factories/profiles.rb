@@ -21,8 +21,12 @@ FactoryBot.define do
     password { FFaker::Internet.password }
     user { FactoryBot.create(:user) }
 
-    trait :with_user_type_user do
+    trait :user do
       user { FactoryBot.create(:user) }
+    end
+
+    trait :doctor do
+      user { FactoryBot.create(:doctor) }
     end
   end
 end

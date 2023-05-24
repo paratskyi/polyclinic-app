@@ -44,5 +44,6 @@ RSpec.describe Profile do
 
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to accept_nested_attributes_for(:user).allow_destroy(false) }
   end
 end
