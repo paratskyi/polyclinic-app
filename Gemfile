@@ -56,6 +56,8 @@ gem 'draper', '~> 4.0', '>= 4.0.2'
 gem 'jquery-rails', '~> 4.5', '>= 4.5.1'
 
 group :development, :test do
+  gem 'capybara', '~> 3.39', '>= 3.39.1'
+  gem 'selenium-webdriver', '~> 4.9', '>= 4.9.1'
   gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 6.2'
