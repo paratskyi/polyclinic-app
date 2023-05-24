@@ -4,13 +4,13 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[show edit update]
   before_action :set_scope, only: %i[index]
 
-  PROFILE_MAPPER = {
-    'doctor' => Profile.doctors.preload(:user),
-    'user' => Profile.users.preload(:user)
+  PROFILE_LOADER_MAPPER = {
+    'doctor' => Profiles::LoadDoctorProfiles,
+    'user' => Profiles::LoadUserProfiles
   }.freeze
 
   def index
-    @profiles = PROFILE_MAPPER[@scope]
+    @profiles = PROFILE_LOADER_MAPPER[@scope].perform(filter_params)
   end
 
   def show
@@ -38,7 +38,13 @@ class ProfilesController < ApplicationController
   end
 
   def set_scope
-    @scope = params[:scope]
+    @scope = params[:scope] || 'doctor'
+  end
+
+  def filter_params
+    params.require(:filters).permit(Profiles::LoadDoctorProfiles::DOCTOR_FILTERS)
+  rescue ActionController::ParameterMissing
+    nil
   end
 
   def profile_params
