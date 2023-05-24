@@ -1,4 +1,14 @@
 <main class="profiles-section">
+
+  <% if current_profile.user? %>
+    <%= form_for(:filters, url: profiles_path, method: :get) do |f| %>
+      <%= f.label :category_id %>
+      <%= f.collection_select :category_id, Category.all, :id, :name, class: 'form-control' %>
+      <%= f.submit "Filter", class: 'btn btn-primary' %>
+    <% end %>
+    <%= link_to "Clear filters", profiles_path(scope: 'doctor'), method: :get %>
+  <% end %>
+
   <table class="table table-sm caption-top table-info table-striped">
     <caption>Available doctors</caption>
     <thead>
