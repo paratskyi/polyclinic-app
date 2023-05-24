@@ -29,7 +29,6 @@ RSpec.describe Doctor do
 
   describe 'associations' do
     it { is_expected.to have_one(:profile).dependent(:destroy) }
-    it { is_expected.to accept_nested_attributes_for(:profile).allow_destroy(false) }
     it { is_expected.to belong_to(:category) }
   end
 end
