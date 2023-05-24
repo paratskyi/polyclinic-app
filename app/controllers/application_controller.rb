@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_profile!
+  before_action :authenticate_admin_user!, if: :current_admin_user
+  before_action :authenticate_profile!, if: :current_profile
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = exception.message
