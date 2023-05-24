@@ -23,7 +23,7 @@
     </tbody>
   </table>
 
-  <% if current_profile.doctor? && @appointment.doctor == current_profile.user && @appointment.planned? %>
+  <% if can?(:edit, @appointment) %>
     <%= button_to "Process appointment", edit_appointment_path(@appointment), method: :get, class: 'btn btn-outline-success' %>
   <% end %>
 </main>

@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  load_and_authorize_resource
+
   before_action :set_profile, only: %i[show edit update]
   before_action :set_scope, only: %i[index]
 
@@ -15,9 +17,12 @@ class ProfilesController < ApplicationController
     session[:doctor_id] = @profile.user.id if @profile.doctor?
   end
 
-  def edit; end
+  def edit
+    authorize! :edit, @profile
+  end
 
   def update
+    authorize! :update, @profile
     if @profile.update(profile_params)
       flash[:success] = 'Profile was successfully updated!'
       redirect_to @profile

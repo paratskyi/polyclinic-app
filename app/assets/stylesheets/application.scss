@@ -1,5 +1,10 @@
 @import "bootstrap";
 
+body {
+  margin-top: 55px;
+  height: calc(100vh - 55px);
+}
+
 main.form-signin, main.form-signup, main.form-edit, main.form-process-appointment {
   display: flex;
   align-items: center;
@@ -21,9 +26,8 @@ main.profile-section, main.profiles-section, main.appointment-section, main.appo
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-top: 55px;
+  height: 100%;
   flex-direction: column;
-  height: calc(100vh - 55px);
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
