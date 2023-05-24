@@ -4,7 +4,7 @@
   <table class="table table-sm caption-top table-info table-striped">
     <caption>
       <%= @profile.user_type %> details
-      <% if @profile == current_profile %>
+      <% if can?(:edit, @profile) %>
         |
         <%= link_to "Edit", edit_profile_path(@profile), method: :get %>
       <% end %>
