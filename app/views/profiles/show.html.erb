@@ -1,0 +1,31 @@
+<main class="profile-section">
+  <h2>Welcome <%= @profile.decorate.full_name %></h2>
+
+  <table class="table table-sm caption-top table-info table-striped">
+    <caption>
+      <%= @profile.user_type %> details
+      <% if can?(:edit, @profile) %>
+        |
+        <%= link_to "Edit", edit_profile_path(@profile), method: :get %>
+      <% end %>
+    </caption>
+    <tbody>
+    <% @profile.user.class.const_get(:PUBLIC_ATTRIBUTES).each do |attribute_name| %>
+      <tr>
+        <th scope="row"><%= attribute_name.humanize %></th>
+        <td><%= @profile.user.decorate.public_send(attribute_name) %></td>
+      </tr>
+    <% end %>
+    <% @profile.class.const_get(:PUBLIC_ATTRIBUTES).each do |attribute_name| %>
+      <tr>
+        <th scope="row"><%= attribute_name.humanize %></th>
+        <td><%= @profile.decorate.public_send(attribute_name) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <% if current_profile.user? && @profile.doctor? %>
+    <%= button_to "Create appointment", new_appointment_path, method: :get, class: 'btn btn-outline-success' %>
+  <% end %>
+</main>

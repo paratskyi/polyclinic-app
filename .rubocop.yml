@@ -1,0 +1,43 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'bin/**'
+    - 'spec/rails_helper.rb'
+    - 'spec/spec_helper.rb'
+    - 'config/**/*'
+    - 'db/schema.rb'
+    - 'db/migrate/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/ArgumentsForwarding:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
+Lint/MissingSuper:
+  Enabled: false
