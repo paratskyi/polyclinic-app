@@ -1,24 +1,13 @@
-# README
+# Simple project with the managing clinic
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Credentials
 
-Things you may want to cover:
+### User panel
+* URL: https://polyclinic-app.herokuapp.com/
+* Login: 0111111111
+* Password: password
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Admin panel
+* URL: https://polyclinic-app.herokuapp.com/admin
+* Login: 0999999999
+* Password: password
